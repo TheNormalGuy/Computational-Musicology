@@ -7,11 +7,17 @@ To support my corpus, I will look at several songs that have been heavily played
 I began my preliminary investigation through China Cat Sunflower, by compiling the tracks available on spotify into seven playlists, depending on when the renditions were recorded. These periods are unevenly distributed, as most of the live recordings of the performances are found in the early seventies. The periods I have chosen are:
 
 1967-1968: early years before the studio recording
+
 1969-1970: performances during/after the studio recording
+
 1971-1972: period with most performance activity
+
 1973-1976: most commercially successful period
+
 1977-1981: "golden" period
-1982-1988: health decline of Garcia
+
+1982-1988: health decline of Jerry Garcia
+
 1989-1995: final years of the group
 
 One interesting observation I have found that so-called "golden" period, regarded by plenty of Dead fans as being their greatest live period, has the closest features to the original studio recording in 1969, with a measured mean energy (M = 0.580) being closest to the energy of the studio recording (0.581), with the second-closest being the second and third period with 0.563-0.565 energy. The golden period also has a very comparable tempo (M = 95.5, compared to the original 96.9 tempo, with the closest being the second period at the slightly closer 98.2).
