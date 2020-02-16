@@ -1,4 +1,6 @@
-# Computational-Musicology
+# ComputationalMusicology
+
+#Week 1
 
 The Grateful Dead was an American jam band established in 1965 that fused many genres of music such as folk, jazz, blues, psychedelic rock, and gospel. They were especially known for their live performances with lengthy instrumental jams, which would usually be elaborations on some basis tunes - for example, there exist 80 versions alone of Dark Star on Spotify. Have these basis tunes varied in style throughout their 30-year stint - could they be split into specific "eras"?
 
@@ -27,3 +29,10 @@ I have found the most instrumental period to be the fourth period with an averag
 The fourth period also features their lengthiest renditions of China Cat Sunflower, with an mean duration of 10.4 minutes, by far outlasting the second place, the final period at an mean of 6.5 minutes, while the tracks in the other periods last an mean of 4.5-5.5 minutes.
 
 One setback of my comparisons is already clear in how large the standard deviations are, especially in the later periods of which there are far less renditions of China Cat Sunflower, meaning I have had to calculate the averages of only 3-5 tracks. However, I have found the highest standard deviations to occur in the fourth period, perhaps meaning that I still have yet to establish more "precise" periods for which track features are more comparable. If my findings are anything to go by, one of my most pressing tasks to come will be to explain these deviations - perhaps they are also caused by medleys, in the way the Grateful Dead fuse together multiple songs within the same jam?
+
+#Week 2
+
+As I have had difficulties in assigning the correct release dates for the songs within my corpus, I have primarily used this week for practicing graph plots by looking at whether or not different song attributes correlate with each other - but I still still keep my primary focus in mind by plotting the different "eras" of China Cat Sunflower into the same graph. To distinguish between the different eras, I have chosen to colour them on a monochromatic gradient, as it will be clearer to potentially see if the group had transitioned in style. The darker the point, the later the period.
+
+I have created my point plots using ggplot and geom_point, adding a new geom_point for every era data set, and set alpha to 0.7 and size to 4.
+
