@@ -36,4 +36,4 @@ As I have had difficulties in assigning the correct release dates for the songs 
 
 I have created my point plots using ggplot and geom_point, adding a new geom_point for every era data set, and set alpha to 0.7 and size to 4.
 
-![Plot](RPlot01.png)
+![Plot](Rplot01.png)
