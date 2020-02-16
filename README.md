@@ -46,4 +46,4 @@ Here, we observe how most of the live renditions of China Cat Sunflower are in t
 
 ![Plot](Rplot03.png)
 
-Here, we observe that liveness is negatively correlated with acousticness
+Here, we observe that liveness is negatively correlated with acousticness.
