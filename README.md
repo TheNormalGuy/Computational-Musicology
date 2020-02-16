@@ -37,3 +37,13 @@ As I have had difficulties in assigning the correct release dates for the songs 
 I have created my point plots using ggplot and geom_point, adding a new geom_point for every era data set, and set alpha to 0.7 and size to 4.
 
 ![Plot](Rplot01.png)
+
+As we can see, Instrumentalness can be correlated to the length of the song - and that later periods are lengthier.
+
+![Plot](Rplot02.png)
+
+Here, we observe how most of the live renditions of China Cat Sunflower are in the same tempo, although there are some significant outliers in the middle periods - and that valence has generally gone down during their career.
+
+![Plot](Rplot03.png)
+
+Here, we observe that liveness is negatively correlated with acousticness
