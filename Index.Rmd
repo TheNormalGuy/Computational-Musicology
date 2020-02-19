@@ -1,0 +1,27 @@
+---
+title: 'Computation Musicology'
+author: 'Nikolaj Lisek'
+date: 'Feb-Mar 2020'
+output:
+  flexdashboard::flex_dashboard:
+    storyboard: true
+    theme: flatly
+---
+   
+```{r setup}
+library(tidyverse)
+library(plotly)
+library(spotifyr)
+source('spotify.R')
+```
+
+### Use a full sentence for the big titles
+
+jlkjklj
+
+*** 
+
+njlkjlkj
+
+### lkjlkjs
+
