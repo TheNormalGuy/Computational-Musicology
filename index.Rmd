@@ -39,13 +39,39 @@ MMU3 <- get_playlist_audio_features('113196588','2NzmIqg2fS5LfBa5BaWIOu')
 MMU4 <- get_playlist_audio_features('113196588','3WErsKgOHyBQyiQ2Vbna2j')
 MMU5 <- get_playlist_audio_features('113196588','1de3oCr2ZJIhsmB4FXR7KT')
 
+NFA1 <- get_playlist_audio_features('113196588','4beoU2UmxVRWs8KPE34qX2')
+NFA2 <- get_playlist_audio_features('113196588','79NvADGsHANesMs0fy720U')
+NFA3 <- get_playlist_audio_features('113196588','2bsl6T9bkBxGe1wc6xaWGy')
+NFA4 <- get_playlist_audio_features('113196588','20sfHVXxOb8LBaIz6gUd1N')
+NFA5 <- get_playlist_audio_features('113196588','6ptJcBQ4mMZfuWmPr9ymBC')
+NFA6 <- get_playlist_audio_features('113196588','4ziXy2RGeerGdt6M2eikq1')
+
+DS1 <- get_playlist_audio_features('113196588','49pPjzAbeKLyMtzq9f76zL')
+DS2 <- get_playlist_audio_features('113196588','2PTsiwUQxXbeOO0e42mJa7')
+DS3 <- get_playlist_audio_features('113196588','6VHNqQTvAz8ojOwlDkWGKC')
+DS4 <- get_playlist_audio_features('113196588','3XHn9z5J4ukaIfR7iXS1wi')
+DS5 <- get_playlist_audio_features('113196588','3ue2jCxvTCsyb6mJo5JVXa')
+DS6 <- get_playlist_audio_features('113196588','1l0e1rUdOlxTjrfrl6CR2x')
+
     Chinacat <- CCS1 %>% mutate(playlist = "1967-1968") %>% bind_rows(CCS2 %>% mutate(playlist = "1969-1970")) %>% bind_rows(CCS3 %>% mutate(playlist = "1971-1972")) %>% bind_rows(CCS4 %>% mutate(playlist = "1973-1976")) %>% bind_rows(CCS5 %>% mutate(playlist = "1977-1981")) %>% bind_rows(CCS6 %>% mutate(playlist = "1982-1988")) %>% bind_rows(CCS7 %>% mutate(playlist = "1990-1995"))
     
     Meuncle <- MMU1 %>% mutate(playlist = "1969-1970") %>% bind_rows(MMU2 %>% mutate(playlist = "1971-1972")) %>% bind_rows(MMU3 %>% mutate(playlist = "1973-1976")) %>% bind_rows(MMU4 %>% mutate(playlist = "1977-1981")) %>% bind_rows(MMU5 %>% mutate(playlist = "1982-1988"))
     
+    Notfade <- NFA1 %>% mutate(playlist = "1969-1970") %>% bind_rows(NFA2 %>% mutate(playlist = "1971-1972")) %>% bind_rows(NFA3 %>% mutate(playlist = "1973-1976")) %>% bind_rows(NFA4 %>% mutate(playlist = "1977-1981")) %>% bind_rows(NFA5 %>% mutate(playlist = "1982-1988")) %>% bind_rows(NFA6 %>% mutate(playlist = "1989-1989"))
+    
+    Darkstar <- DS1 %>% mutate(playlist = "1967-1968") %>% bind_rows(DS2 %>% mutate(playlist = "1969-1970")) %>% bind_rows(DS3 %>% mutate(playlist = "1971-1972")) %>% bind_rows(DS4 %>% mutate(playlist = "1973-1976")) %>% bind_rows(DS5 %>% mutate(playlist = "1977-1981")) %>% bind_rows(DS6 %>% mutate(playlist = "1989-1995"))
+    
 ggplot(Chinacat, aes(x=playlist, y=valence)) + geom_boxplot(alpha=0.7) + stat_summary(fun.y=mean, geom="point", size=4, color="red", fill="red") + geom_line() + theme(legend.position="none") + scale_fill_brewer(palette="Set1") + theme_light() + labs(x = "Period", y = "Valence") + ggtitle("Plot of China Cat Sunflower Performances Over Time by Valence")
 
 ggplot(Meuncle, aes(x=playlist, y=valence)) + geom_boxplot(alpha=0.7) + stat_summary(fun.y=mean, geom="point", size=4, color="red", fill="red") + geom_line() + theme(legend.position="none") + scale_fill_brewer(palette="Set1") + theme_light() + labs(x = "Period", y = "Valence") + ggtitle("Plot of Me And My Uncle Performances Over Time by Valence")    
+
+ggplot(Notfade, aes(x=playlist, y=valence)) + geom_boxplot(alpha=0.7) + stat_summary(fun.y=mean, geom="point", size=4, color="red", fill="red") + geom_line() + theme(legend.position="none") + scale_fill_brewer(palette="Set1") + theme_light() + labs(x = "Period", y = "Valence") + ggtitle("Plot of Not Fade Away Performances Over Time by Valence")    
+
+ggplot(Darkstar, aes(x=playlist, y=valence)) + geom_boxplot(alpha=0.7) + stat_summary(fun.y=mean, geom="point", size=4, color="red", fill="red") + geom_line() + theme(legend.position="none") + scale_fill_brewer(palette="Set1") + theme_light() + labs(x = "Period", y = "Valence") + ggtitle("Plot of Dark Star Performances Over Time by Valence")
+
+ggplot(Darkstar, aes(x=playlist, y=track.duration_ms)) + geom_boxplot(alpha=0.7) + stat_summary(fun.y=mean, geom="point", size=4, color="red", fill="red") + geom_line() + theme(legend.position="none") + scale_fill_brewer(palette="Set1") + theme_light() + labs(x = "Period", y = "Track Duration (ms)") + ggtitle("Plot of Dark Star Performances Over Time by Track Duration")    
+
+
 
 #CCSliveness <- ggplot(Chinacat, aes(x=playlist, y=liveness)) + geom_boxplot(alpha=0.7) + stat_summary(fun.y=mean, geom="point", shape=20, size=14, color="red") + theme(legend.position="none") + scale_fill_brewer(palette="Set1")
 
@@ -103,7 +129,9 @@ ggplot(Meuncle, aes(x=playlist, y=valence)) + geom_boxplot(alpha=0.7) + stat_sum
 
 ***
 
-I begin my preliminary questions by asking - can we even *see* differences of performances over time? I would argue yes, as, for example, overall valence has clearly gone down for both China Cat Sunflower and Me and My Uncle.
+I begin my preliminary questions by asking - can we even *see* differences of performances over time? I would argue yes, as, for example, overall valence has clearly gone down for both China Cat Sunflower, Me and My Uncle, and Not Fade Away, with valence generally peaking in the first half of the 1970s. 
+
+An interesting odd-one-out is Dark Star. Dark Star was performed since the foundation of the Grateful Dead, but the song was initially released as an upbeat single, which is reflected in the higher valence in their early years. It was the highly-acclaimed Live/Dead live album, recorded in 1969, that signalled the song's evolution into the a cornerstone of the band's jamming. Another variable that can help us see how the song became the tune of choice for jamming on is the track duration - the last chart shows how the length of the Dark Star tracks is inversely correlated with the valence, showing how the song evolved from being upbeat to drawn-out, before slightly reversing the trend back to upbeatness in their later years.
 
 ### Chromas
 
