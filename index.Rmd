@@ -1,0 +1,119 @@
+---
+title: 'Computation Musicology'
+author: 'Nikolaj Lisek'
+date: 'Feb-Mar 2020'
+output:
+  flexdashboard::flex_dashboard:
+    storyboard: true
+    theme: flatly
+---
+   
+```{r setup}
+library(tidyverse)
+library(plotly)
+library(spotifyr)
+library(compmus)
+source('spotify.R')
+```
+
+### Introduction
+
+The Grateful Dead was an American jam band established in 1965 that fused many genres of music such as folk, jazz, blues, psychedelic rock, and gospel. They were especially known for their live performances with lengthy instrumental jams, which would usually be elaborations on some basis tunes - for example, there exist 80 versions alone of Dark Star on Spotify. Have these basis tunes varied in style throughout their 30-year stint - could they be split into specific "eras"?
+
+To support my corpus, I will look at several songs that have been heavily played by the Grateful Dead throughout their career, in this way comparing and contrasting my findings. Another reason for picking various songs is also simply because they would not use some tracks at all in some periods - Dark Star was never played at all between 1974 and 1978. The basis tunes I will use will be Dark Star, Not Fade Away, China Cat Sunflower, and Me And My Uncle, all songs the Grateful Dead have played around 400-600 times each in their career.
+
+### Shades of the Dead
+
+```{r}
+CCS1 <- get_playlist_audio_features('113196588','56LRNwZLB1m5ozn7XiRwc0')
+CCS2 <- get_playlist_audio_features('113196588','0fLVeqfD79Bw8n6aNuPRVK')
+CCS3 <- get_playlist_audio_features('113196588','5iBikvsn2LOu8eJNpEDVlH')
+CCS4 <- get_playlist_audio_features('113196588','32K2c8tmRSjSQKVljnM5zZ')
+CCS5 <- get_playlist_audio_features('113196588','5zjh9EUejGp4NMfXsxeDUJ')
+CCS6 <- get_playlist_audio_features('113196588','5pOE9W2ks6ivKlQpXrZsU5')
+CCS7 <- get_playlist_audio_features('113196588','0W5ZvCOKCOcAJztZG0toxC')
+
+MMU1 <- get_playlist_audio_features('113196588','7AOzpn4v6rai73JRFilCg4')
+MMU2 <- get_playlist_audio_features('113196588','7lzIhjAVmzKF2M9NC2Dbd0')
+MMU3 <- get_playlist_audio_features('113196588','2NzmIqg2fS5LfBa5BaWIOu')
+MMU4 <- get_playlist_audio_features('113196588','3WErsKgOHyBQyiQ2Vbna2j')
+MMU5 <- get_playlist_audio_features('113196588','1de3oCr2ZJIhsmB4FXR7KT')
+
+    Chinacat <- CCS1 %>% mutate(playlist = "1967-1968") %>% bind_rows(CCS2 %>% mutate(playlist = "1969-1970")) %>% bind_rows(CCS3 %>% mutate(playlist = "1971-1972")) %>% bind_rows(CCS4 %>% mutate(playlist = "1973-1976")) %>% bind_rows(CCS5 %>% mutate(playlist = "1977-1981")) %>% bind_rows(CCS6 %>% mutate(playlist = "1982-1988")) %>% bind_rows(CCS7 %>% mutate(playlist = "1990-1995"))
+    
+    Meuncle <- MMU1 %>% mutate(playlist = "1969-1970") %>% bind_rows(MMU2 %>% mutate(playlist = "1971-1972")) %>% bind_rows(MMU3 %>% mutate(playlist = "1973-1976")) %>% bind_rows(MMU4 %>% mutate(playlist = "1977-1981")) %>% bind_rows(MMU5 %>% mutate(playlist = "1982-1988"))
+    
+ggplot(Chinacat, aes(x=playlist, y=valence)) + geom_boxplot(alpha=0.7) + stat_summary(fun.y=mean, geom="point", size=4, color="red", fill="red") + geom_line() + theme(legend.position="none") + scale_fill_brewer(palette="Set1") + theme_light() + labs(x = "Period", y = "Valence") + ggtitle("Plot of China Cat Sunflower Performances Over Time by Valence")
+
+ggplot(Meuncle, aes(x=playlist, y=valence)) + geom_boxplot(alpha=0.7) + stat_summary(fun.y=mean, geom="point", size=4, color="red", fill="red") + geom_line() + theme(legend.position="none") + scale_fill_brewer(palette="Set1") + theme_light() + labs(x = "Period", y = "Valence") + ggtitle("Plot of Me And My Uncle Performances Over Time by Valence")    
+
+#CCSliveness <- ggplot(Chinacat, aes(x=playlist, y=liveness)) + geom_boxplot(alpha=0.7) + stat_summary(fun.y=mean, geom="point", shape=20, size=14, color="red") + theme(legend.position="none") + scale_fill_brewer(palette="Set1")
+
+
+#ggplotly(CCSliveness)
+    
+#angry <-
+#    awards %>%                   # Start with awards.
+#    mutate(                      # Make pretty labels for mode.
+#        mode =                  
+#            factor(
+#                mode, 
+#                c(1, 0), 
+#                c("Major", "Minor")
+#            )
+#    ) %>% 
+#    ggplot(                      # Set up the plot.
+#        aes(
+#            x = valence,
+#            y = energy,
+#            size = loudness,
+#            colour = mode,
+#            label = track.name   # Labels will be interactively visible.
+#        )
+#    ) +
+#    geom_point() +               # Scatter plot.
+#    geom_rug(size = 0.1) +       # Add 'fringes' to show data distribution.
+#    facet_wrap(~ playlist) +     # Separate charts per playlist.
+#    scale_x_continuous(          # Fine-tune the x axis.
+#        limits = c(0, 1),
+#        breaks = c(0, 0.50, 1),  # Use grid-lines for quadrants only.
+#        minor_breaks = NULL      # Remove 'minor' grid-lines.
+#    ) +
+#    scale_y_continuous(          # Fine-tune the y axis in the same way.
+#        limits = c(0, 1),
+#        breaks = c(0, 0.50, 1),
+#        minor_breaks = NULL
+#    ) +
+#    scale_colour_brewer(         # Use the Color Brewer to choose a palette.
+#        type = "qual",           # Qualitative set.
+#        palette = "Paired"       # Name of the palette is 'Paired'.
+#    ) +
+#    scale_size_continuous(       # Fine-tune the sizes of each point.
+#        trans = "exp",           # Use an exp transformation to emphasise loud.
+#        guide = "none"           # Remove the legend for size.
+#    ) +
+#    theme_light() +              # Use a simpler them.
+#    labs(                        # Make the titles nice.
+#        x = "Valence",
+#        y = "Energy",
+#        colour = "Mode"
+#    )
+#ggplotly(angry)
+```
+
+***
+
+I begin my preliminary questions by asking - can we even *see* differences of performances over time? I would argue yes, as, for example, overall valence has clearly gone down for both China Cat Sunflower and Me and My Uncle.
+
+### Chromas
+
+```{r}
+MMUWem <- get_tidy_audio_analysis('4EIrDlvwk1NBkEEqRWbsba') %>% select(segments) %>% unnest(segments) %>% select(start, duration, pitches)
+MMUVen <- get_tidy_audio_analysis('2mliKZOmPLLA5CmylylPzI') %>% select(segments) %>% unnest(segments) %>% select(start, duration, pitches)
+
+compmus_long_distance(MMUWem %>% mutate(pitches = map(pitches, compmus_normalise, 'chebyshev')), MMUVen %>% mutate(pitches = map(pitches, compmus_normalise, 'chebyshev')), feature = pitches, method = 'euclidean') %>% ggplot(aes(x = xstart + xduration / 2, width = xduration, y = ystart + yduration / 2, height = yduration, fill = d)) + geom_tile() + scale_fill_continuous(type = 'viridis', guide = 'none') + labs(x = 'London, 7/4/1972', y = 'Veneta, 27/8/1972') + theme_minimal() + ggtitle("Dynamic Time Warp Plot of Two Me And My Uncle Performances")    
+```
+
+***
+
+In order to spot differences between different recordings of the same song, I created a plot that shows dynamic time warping between two recordings. To begin my investigations, I attempted to compare two recordings of Me And My Uncle, a relatively simple cover song without much improvisation, and chose two recordings with virtually the same length and similar recording dates. The fact that two of the most similar-at-appearance tracks do not seem to converge on the graph complicates the usage of using DTW for my corpus.
