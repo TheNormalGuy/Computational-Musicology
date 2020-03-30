@@ -229,10 +229,9 @@ Notfadecompare %>% mutate(sections = map(sections, summarise_at, vars(tempo, lou
 
 NotfadeNY <- get_tidy_audio_analysis('5tw0XOtzp0dZlLvESyiYAl')
 
-NotfadeNY %>% tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) %>% ggplot(aes(x = time, y = bpm, fill = power)) + geom_raster() + scale_fill_viridis_c(guide = 'none') + labs(x = 'Time (s)', y = 'Tempo (BPM)') + theme_classic() + ggtitle("Tempogram of Not Fade Away, New York 1977") 
+#NotfadeNY %>% tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) %>% ggplot(aes(x = time, y = bpm, fill = power)) + geom_raster() + scale_fill_viridis_c(guide = 'none') + labs(x = 'Time (s)', y = 'Tempo (BPM)') + theme_classic() + ggtitle("Tempogram of Not Fade Away, New York 1977") 
 
-#Darkstarcompare %>% mutate(timbre = map(segments, compmus_summarise, timbre, method = 'mean')) %>% select(genre, timbre) %>% compmus_gather_timbre %>% ggplot(aes(x = basis, y = value, fill = genre)) + geom_violin() +scale_fill_viridis_d() + labs(x = 'Spotify Timbre Coefficients', y = '', fill = 'Period') + ggtitle("Plot of Variation in Tempo between Dark Star Recordings")    
-
+include_graphics("ZkdAQQQQAABBBBAAAEEEEAAAQQQCF2AAFDoxEyAAAIIIIAAAggggAACCCCAAAIIJFfgf3+8SwRx7ZqbAAAAAElFTkSuQmCC.jpg")
 
 ```
 
@@ -288,7 +287,7 @@ By looking at these matrices that uncover the texture of the performances, we ca
 A Story of the Dead {.storyboard}
 =========================================
 
-### 1977 - The "Greatest" Year?
+### 1977 - The "Greatest" Year? I
 
 ```{r}
     
@@ -335,10 +334,6 @@ SS_cv %>% mutate(pred = map(splits, predict_forest)) %>% unnest(pred) %>% metric
 
 SS_class %>% fit(SS_forest, playlist ~ ., data = .) %>% pluck('fit') %>% randomForest::varImpPlot()
 
-NFA %>% ggplot(aes(x = c01, y = c09, colour = playlist, size = acousticness)) + geom_point(alpha = 0.8) + scale_color_brewer(type = 'qual', palette = 'Accent') + labs(x = 'Timbre Component 1', y = 'Timbre Component 9', size = 'Acousticness', colour = 'Playlist') + ggtitle("Not Fade Away, Important Features")
-
-SS %>% ggplot(aes(x = c01, y = c09, colour = playlist, size = acousticness)) + geom_point(alpha = 0.8) + scale_color_brewer(type = 'qual', palette = 'Accent') + labs(x = 'Timbre Component 1', y = 'Timbre Component 9', size = 'Acousticness', colour = 'Playlist') + ggtitle("St. Stephen, Important Features")
-
 ```
 
 ***
@@ -347,11 +342,32 @@ SS %>% ggplot(aes(x = c01, y = c09, colour = playlist, size = acousticness)) + g
 
 The two songs I have used is Not Fade Away, and another Grateful Dead mainstay, St. Stephen - Spotify has almost no recordings of Me and My Uncle, Dark Star, or China Cat Sunflower during this period. By employing random forests and running the code a couple of times, I have concluded that acousticness and instrumentalness, along with Timbre Component 1 and Timbre Component 9, are the four defining features of the 1977 performances.
 
-In the charting of acousticness and instrumentalness, the two tangible variables, we do indeed see that that 1977, in general, was a less acoustic year during the 1975-1979 period, for both songs - on top of that, despite being a vocal song, a higher rate of St. Stephen recordings are classified as not non-instrumental during that period.
+### 1977 - The Greatest Year? II
+
+```{r}
+    
+NFA %>% ggplot(aes(x = c01, y = c09, colour = playlist, size = acousticness)) + geom_point(alpha = 0.8) + scale_color_brewer(type = 'qual', palette = 'Accent') + labs(x = 'Timbre Component 1', y = 'Timbre Component 9', size = 'Acousticness', colour = 'Playlist') + ggtitle("Not Fade Away, Important Features")
+
+SS %>% ggplot(aes(x = c01, y = c09, colour = playlist, size = acousticness)) + geom_point(alpha = 0.8) + scale_color_brewer(type = 'qual', palette = 'Accent') + labs(x = 'Timbre Component 1', y = 'Timbre Component 9', size = 'Acousticness', colour = 'Playlist') + ggtitle("St. Stephen, Important Features")
+
+
+```
+
+***
+
+In the charting of acousticness, Timbre Component 1, and Timbre Component 9, we do indeed see that that 1977, in general, was a less acoustic year during the 1975-1979 period, and that the two timbre variables are distinctly separated, for both songs - on top of that, despite being a vocal song, a higher rate of St. Stephen recordings are classified as not non-instrumental during that period.
 
 Are these timbre variables, along with acousticness, the magic sauce of these performances? The performances that year are described as a potent rebirth of the band, the music being described as cathartic. Or maybe, as the Cornell article attests, it may simply just be that the recordings of those shows were becaome one of the most distributed among fans. Either way, it is clear that the 1977 *did* have musical features that stood out from the time.
 
-### Fare The Well
+### Fare Thee Well
+
+```{r}
+
+include_graphics("2990.png")
+
+```
+
+***
 
 The Grateful Dead is a band not only known for their own musical feats, but the subculture and devoted fanbase they spawned. As a result, their feats, pursuits, developments, and not to mention their music, have been described in rich detail through books, blogs, websites, and archives. 
 
@@ -360,11 +376,3 @@ The conclusions I have made throughout my corpus are ones that have already been
 But despite the fact that my conclusions have ended up being validated more by fans than the other way around, and don't offer much that was not already known to them, my conclusions also stand as a testament to the fact that analysing the data of live performances of bands *can* give reasonable conclusions about how they evolve and develop over time. In the end, they can help suggest ways we can describe and explain what makes experiencing live music - being in that ever-changing process - so remarkable, by mapping the sprawling developments that bands make in their sound, their melodies, and their structures.
 
 [Image Source](https://www.northernsun.com/Long-Strange-Trip-Magnet-%282990%29.html)
-
-***
-
-```{r}
-
-include_graphics("2990.png")
-
-```
